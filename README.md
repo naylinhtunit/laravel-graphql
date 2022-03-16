@@ -67,4 +67,28 @@ User::factory()->create()
   }
 }
 ```
-<img src="https://i.ibb.co/Zf33xdg/laravel-graphql-test.jpg" alt="laravel-graphql-test" border="0">
+<img src="https://i.ibb.co/Zf33xdg/laravel-graphql-test.jpg">
+
+
+* Test graphql > schema.graphql
+
+* ! => Cannot return null for non-nullable field
+
+```
+type User
+{
+  id: ID,
+  name: String
+  email_verified_at: String!
+}
+```
+
+<img src="https://i.ibb.co/8BvZ6gP/02laravel-graphql-test.jpg">
+
+```
+type Query
+{
+  users: [User!] @all
+}
+```
+<img src="https://i.ibb.co/gjHHKzZ/01laravel-graphql-test.jpg">
