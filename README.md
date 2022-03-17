@@ -72,7 +72,7 @@ User::factory()->create()
 
 * Test graphql > schema.graphql
 
-* ! => Cannot return null for non-nullable field
+* ! => Cannot return null for non-nullable field for @all user
 
 ```
 type User
@@ -92,3 +92,46 @@ type Query
 }
 ```
 <img src="https://i.ibb.co/gjHHKzZ/01laravel-graphql-test.jpg">
+
+```
+php artisan tinker
+User::factory()->count(5)->create()
+```
+
+* Test graphql > schema.graphql
+
+```
+type Query
+{
+  user(id: ID @eq): User @find
+}
+```
+
+* Check url (http://laravel-graphql.test/graphql-playground)
+
+```
+{
+  user(id: 1){
+    id
+  }
+}
+```
+
+* Test graphql > schema.graphql
+
+```
+  #for paginate
+  users: [User!]! @paginate
+```
+
+* Check url (http://laravel-graphql.test/graphql-playground)
+
+```
+{
+  users(first: 2){
+    data{
+      name
+    }
+  }
+}
+```

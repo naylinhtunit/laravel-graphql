@@ -44,12 +44,14 @@ type User {
 # ! => Cannot return null for non-nullable field
 type Query
 {
-  users: [User] @all
+  # users: [User!]! @all
+  # user(id: ID @eq): User @find
+  users: [User!]! @paginate
 }
 
 type User
 {
   id: ID,
   name: String
-  email_verified_at: String!
+  email_verified_at: String
 }
